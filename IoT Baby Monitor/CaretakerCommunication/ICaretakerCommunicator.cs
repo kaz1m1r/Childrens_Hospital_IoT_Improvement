@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BabyphoneIoT.CaretakerCommunication
 {
+    /// <summary>
+    /// An interface that allows for communication from a caretaker's point of view.
+    /// </summary>
     public interface ICaretakerCommunicator
     {
         /// <summary>

@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BabyRegister.cs" />
+    <Compile Include="CaretakerCommand.cs" />
     <Compile Include="CaretakerCommunicator.cs" />
     <Compile Include="IBabyRegister.cs" />
     <Compile Include="ICaretakerCommunicator.cs" />
     <Compile Include="INurseCommunicator.cs" />
+    <Compile Include="NurseCommand.cs" />
     <Compile Include="NurseCommunicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
