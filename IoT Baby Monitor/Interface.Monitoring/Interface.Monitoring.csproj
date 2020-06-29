@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ParentOptions.xaml.cs">
+      <DependentUpon>ParentOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WaitForAttachment.xaml.cs">
       <DependentUpon>WaitForAttachment.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ParentOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WaitForAttachment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
