@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BabyphoneIoT.Interface.Monitoring"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Parental login" Height="450" Width="800">
     <Grid>
-        <Button Name="btnHi" Content="Hi" Width="50" Height="25"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock Width="80" Height="40">
+                Login Screen
+            </TextBlock>
+
+            <TextBox>
+                Enter name
+            </TextBox>
+
+            <TextBlock>
+            </TextBlock>
+
+            <Button Content="Login" Width="40" Height="auto" Click="Parent_Login_Button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

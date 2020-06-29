@@ -13,10 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-/// <summary>
-/// Parental login
-/// </summary>
-namespace BabyphoneIoT.Interface.Monitoring
+namespace BabyphoneIoT.Interface.Nursing
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -27,10 +24,17 @@ namespace BabyphoneIoT.Interface.Monitoring
         {
             InitializeComponent();
         }
-        private void Parent_Login_Button_Click(object sender, RoutedEventArgs e)
+        
+        private void Attach_parent_button_clicked(object sender, RoutedEventArgs e)
         {
-            WaitForAttachment m1 = new WaitForAttachment();
-            m1.Show();
+            string selected = babyCombobox.Text;
+            attachmentUpdate.Text = "Attached " + selected;
+        }
+        private void Detach_parent_button_clicked(object sender, RoutedEventArgs e)
+        {
+            string selected = babyCombobox.Text;
+            attachmentUpdate.Text = "Detached " + selected;
+
         }
     }
 }
