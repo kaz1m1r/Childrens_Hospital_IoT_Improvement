@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEntities", "DataEntitie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaretakerCommunication", "CaretakerCommunication\CaretakerCommunication.csproj", "{A6BE6C44-446A-4FAC-A3EB-9F2AE0347E50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{7847DB7A-B833-4622-B253-069110B601CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{A6BE6C44-446A-4FAC-A3EB-9F2AE0347E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6BE6C44-446A-4FAC-A3EB-9F2AE0347E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6BE6C44-446A-4FAC-A3EB-9F2AE0347E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7847DB7A-B833-4622-B253-069110B601CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7847DB7A-B833-4622-B253-069110B601CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7847DB7A-B833-4622-B253-069110B601CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7847DB7A-B833-4622-B253-069110B601CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
