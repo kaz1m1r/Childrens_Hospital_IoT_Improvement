@@ -1,9 +1,5 @@
 ﻿using BabyphoneIoT.DataEntities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BabyphoneIoT.CaretakerCommunication
 {
@@ -44,6 +40,6 @@ namespace BabyphoneIoT.CaretakerCommunication
         /// <summary>
         /// Listen for any request to unsubscribe from the connected caretaker.
         /// </summary>
-        void ListenForUnsubscribe();
+        string ListenForUnsubscribe();
     }
 }

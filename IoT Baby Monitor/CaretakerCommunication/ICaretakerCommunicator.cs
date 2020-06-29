@@ -1,11 +1,4 @@
-﻿using BabyphoneIoT.DataEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabyphoneIoT.CaretakerCommunication
+﻿namespace BabyphoneIoT.CaretakerCommunication
 {
     /// <summary>
     /// An interface that allows for communication from a caretaker's point of view.

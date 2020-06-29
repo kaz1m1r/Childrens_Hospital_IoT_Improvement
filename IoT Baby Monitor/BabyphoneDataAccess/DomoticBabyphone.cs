@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BabyphoneIoT.DataEntities;
 using Microsoft.CSharp.RuntimeBinder;
 
@@ -63,7 +59,7 @@ namespace BabyphoneIoT.BabyphoneDataAccess
                 case "Off":
                     return BabyStatus.Quiet;
                 default:
-                    return BabyStatus.Quiet;
+                    return BabyStatus.None;
             }
         }
         #endregion

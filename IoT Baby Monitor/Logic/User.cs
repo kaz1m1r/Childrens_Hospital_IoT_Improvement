@@ -1,9 +1,5 @@
 ﻿using BabyphoneIoT.DataEntities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BabyphoneIoT.Logic
 {
@@ -17,6 +13,10 @@ namespace BabyphoneIoT.Logic
         /// The username.
         /// </summary>
         public string Name { get; protected set; }
+        /// <summary>
+        /// The caretaker's IP address.
+        /// </summary>
+        public string Address { get; protected set; }
         /// <summary>
         /// Any attached baby monitors.
         /// </summary>
@@ -35,6 +35,16 @@ namespace BabyphoneIoT.Logic
         public User(string name)
         {
             this.Name = name;
+        }
+        /// <summary>
+        /// Initiates a user with a given identity, matched with an address.
+        /// </summary>
+        /// <param name="name">The user's identity.</param>
+        /// <param name="address">The user's IP address.</param>
+        public User(string name, string address)
+            : this(name)
+        {
+            this.Address = address;
         }
         #endregion
 

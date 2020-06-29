@@ -1,9 +1,4 @@
 ﻿using BabyphoneIoT.DataEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BabyphoneIoT.Logic
 {
@@ -21,5 +16,9 @@ namespace BabyphoneIoT.Logic
         /// Notify the nurse of the baby that they are requested.
         /// </summary>
         void NotifyNurse();
+        /// <summary>
+        /// Notifies the nurse that the caretaker unsubscribed.
+        /// </summary>
+        void Unsubscribe();
     }
 }

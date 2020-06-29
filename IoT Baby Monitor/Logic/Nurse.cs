@@ -1,14 +1,12 @@
 ﻿using BabyphoneIoT.BabyphoneDataAccess;
 using BabyphoneIoT.CaretakerCommunication;
-using BabyphoneIoT.DataEntities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BabyphoneIoT.Logic
 {
+    /// <summary>
+    /// Defines a user of type nurse who can monitor multiple babies or assist in assigning a caretaker to a baby monitor.
+    /// </summary>
     public class Nurse : User
     {
         #region Fields
@@ -17,12 +15,37 @@ namespace BabyphoneIoT.Logic
         #endregion
 
         #region Properties
-
+        /// <summary>
+        /// The communicator for the nurse to communicate with caretakers.
+        /// </summary>
+        internal INurseCommunicator Communicator {
+            get { return _communicator; }
+            private set { _communicator = value; }
+        }
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Initiates a nurse with a given identity.
+        /// </summary>
+        /// <param name="name">The user's identity.</param>
+        /// <param name="hospitalIoTDAL">The data access to the IoT environment floorplanning.</param>
+        /// <param name="communicator">The communicator to caretakers.</param>
         public Nurse(string name, IHospital hospitalIoTDAL = null, INurseCommunicator communicator = null)
             : base(name)
+        {
+            this._iotDal = hospitalIoTDAL ?? new DomoticzHospital();
+            this._communicator = communicator ?? new NurseCommunicator(name);
+        }
+        /// <summary>
+        /// Initiates a nurse with a given identity, matched with an address.
+        /// </summary>
+        /// <param name="name">The user's identity.</param>
+        /// <param name="address">The user's IP address.</param>
+        /// <param name="hospitalIoTDAL">The data access to the IoT environment floorplanning.</param>
+        /// <param name="communicator">The communicator to caretakers.</param>
+        public Nurse(string name, string address, IHospital hospitalIoTDAL = null, INurseCommunicator communicator = null)
+            : base(name, address)
         {
             this._iotDal = hospitalIoTDAL ?? new DomoticzHospital();
             this._communicator = communicator ?? new NurseCommunicator(name);
@@ -62,13 +85,13 @@ namespace BabyphoneIoT.Logic
 
             return caretakers;
         }
-
-        public Baby AwaitNotification()
+        /// <summary>
+        /// Awaits any requests from caretakers.
+        /// </summary>
+        /// <returns>Returns the name of the baby who needs to be check out.</returns>
+        public string AwaitNotification()
         {
-            string babyId = _communicator.ListenForRequests();
-            // TODO: Return baby request.
-
-            throw new NotImplementedException();
+            return _communicator.ListenForRequests();
         }
         #endregion
     }

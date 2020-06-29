@@ -6,9 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace BabyphoneIoT.CaretakerCommunication
 {
@@ -193,6 +191,9 @@ namespace BabyphoneIoT.CaretakerCommunication
                         sw.WriteLine(CaretakerCommand.Disconnect.ToString());
                         sw.WriteLine(true.ToString());
                         sw.Flush();
+
+                        _ctSourceGetRequests.Cancel();
+                        _ctSourceListenUnsubscribe.Cancel();
                     }
                 }
                 catch (SocketException e)
@@ -273,7 +274,7 @@ namespace BabyphoneIoT.CaretakerCommunication
         /// <summary>
         /// Listen for any request to unsubscribe from the connected caretaker.
         /// </summary>
-        public void ListenForUnsubscribe()
+        public string ListenForUnsubscribe()
         {
             TcpListener listener = null;
 
@@ -314,6 +315,8 @@ namespace BabyphoneIoT.CaretakerCommunication
                                     _caretakerConnection = new AddressData();
                                     _ctSourceGetRequests.Cancel();
                                     _ctSourceListenUnsubscribe.Cancel();
+
+                                    return identity;
                                 }
                                     
                             }
@@ -335,6 +338,8 @@ namespace BabyphoneIoT.CaretakerCommunication
             {
                 listener.Stop();
             }
+
+            return string.Empty;
         }
         #endregion
         #endregion
