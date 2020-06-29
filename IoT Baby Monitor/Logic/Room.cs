@@ -51,10 +51,16 @@ namespace BabyphoneIoT.Logic
         public List<Baby> GetBabies()
         {
             // Get babies in the room
-            Dictionary<string, string> babies = _iotDal.GetBabies(RoomId);
+            Dictionary<string, string> babyData = _iotDal.GetBabies(RoomId);
 
-            // TODO: Translate data into baby objects
-            throw new NotImplementedException();
+            List<Baby> babies = new List<Baby>();
+
+            foreach(KeyValuePair<string, string> baby in babyData)
+            {
+                babies.Add(new Baby(baby.Key, baby.Value, RoomId));
+            }
+
+            return babies;
         }
         #endregion
     }

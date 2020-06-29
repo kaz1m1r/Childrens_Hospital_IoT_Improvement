@@ -191,10 +191,16 @@ namespace BabyphoneIoT.Logic
             while (Caretakers.Count > 0)
             {
                 string caretaker = _nurseCommunicator.ListenForUnsubscribe();
+                CaretakerUnsubscribed(caretaker);
                 Caretakers.RemoveAll(ct => ct.Name == caretaker);
             }
         }
         #endregion
+        #endregion
+
+        #region Events
+        public delegate void CaretakerUnsubscribedHandler(string caretaker);
+        public event CaretakerUnsubscribedHandler CaretakerUnsubscribed;
         #endregion
     }
 }

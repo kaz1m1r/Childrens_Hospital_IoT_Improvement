@@ -34,7 +34,9 @@ namespace BabyphoneIoT.Logic
         public Caretaker(string name)
             : base(name)
         {
-            
+            _communicator = new CaretakerCommunicator(name);
+            _firstBroadcast = true;
+            _isBroadcasting = false;
         }
         /// <summary>
         /// Initiates a caretaker with a given identity, matched with an address.
@@ -46,6 +48,7 @@ namespace BabyphoneIoT.Logic
         {
             _communicator = new CaretakerCommunicator(name);
             _firstBroadcast = true;
+            _isBroadcasting = false;
         }
         #endregion
 
@@ -53,14 +56,25 @@ namespace BabyphoneIoT.Logic
         /// <summary>
         /// Broadcast the caretaker for all nurse's to see and listen for a baby monitor to attach.
         /// </summary>
-        public void Broadcast()
+        public string Broadcast()
         {
             if (!HasBabyMonitor())
             {
-                _ = Task.Run(() => _communicator.BroadcastSelf());
-                _ = Task.Run(() => GetBabyMonitor());
+                // Start broadcast
+                _firstBroadcast = false;
                 _isBroadcasting = true;
+                _ = Task.Run(() => _communicator.BroadcastSelf());
+
+                // Get baby monitor
+                string babyId = _communicator.GetBabyMonitor();
+                BabyMonitors.Add(new Baby(babyId, _communicator));
+                _isBroadcasting = false;
+
+                _ = Task.Run(() => ListenForDetachmentRequest());
+                return babyId;
             }
+
+            return string.Empty;
         }
         /// <summary>
         /// Send a help request to the assigned nurse of the caretaker's baby.
@@ -81,36 +95,39 @@ namespace BabyphoneIoT.Logic
         #region Explicit Methods
         private bool HasBabyMonitor()
         {
-            return !_isBroadcasting || _firstBroadcast;
+            return !_isBroadcasting && !_firstBroadcast;
         }
         #endregion
 
         #region Listeners
         /// <summary>
-        /// Listen for a baby monitor from a nurse to be assigned to them.
+        /// Listen for detachment request by nurse.
         /// </summary>
-        private void GetBabyMonitor()
+        private void ListenForDetachmentRequest()
         {
-            // Get baby monitor
-            string babyId = _communicator.GetBabyMonitor();
-            BabyMonitors.Add(new Baby(babyId, _communicator));
-            _isBroadcasting = false;
-
             // Listen for proper disconnection
-            while (!ListenForDetachmentRequest())
+            while (!ListenForDetachmentRepeat())
             {
 
             }
+
+            BabyMonitors.Clear();
+            DetachmentRequest();
         }
         /// <summary>
         /// Listen for the nurse to detach them from the baby.
         /// </summary>
         /// <returns>Returns true if the request was made.</returns>
-        private bool ListenForDetachmentRequest()
+        private bool ListenForDetachmentRepeat()
         {
             return _communicator.ListenForDetachmentRequest();
         }
         #endregion
+        #endregion
+
+        #region Events
+        public delegate void DetachmentRequestHandler();
+        public event DetachmentRequestHandler DetachmentRequest;
         #endregion
     }
 }

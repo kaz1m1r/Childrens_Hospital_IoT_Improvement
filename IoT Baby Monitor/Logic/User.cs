@@ -35,6 +35,7 @@ namespace BabyphoneIoT.Logic
         public User(string name)
         {
             this.Name = name;
+            this.BabyMonitors = new List<IBabyMonitor>();
         }
         /// <summary>
         /// Initiates a user with a given identity, matched with an address.
