@@ -58,14 +58,14 @@
     <Compile Include="babyCries.xaml.cs">
       <DependentUpon>babyCries.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="babyCries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NurseOptions.xaml">
+    <Page Include="NurseConfigurationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -73,11 +73,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NurseOptions.xaml.cs">
-      <DependentUpon>NurseOptions.xaml</DependentUpon>
+    <Compile Include="NurseConfigurationWindow.xaml.cs">
+      <DependentUpon>NurseConfigurationWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +107,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BabyphoneDataAccess\BabyphoneDataAccess.csproj">
+      <Project>{DFFA20D5-3F30-4512-B8F0-80730522587F}</Project>
+      <Name>BabyphoneDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CaretakerCommunication\CaretakerCommunication.csproj">
+      <Project>{A6BE6C44-446A-4FAC-A3EB-9F2AE0347E50}</Project>
+      <Name>CaretakerCommunication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataEntities\DataEntities.csproj">
+      <Project>{CA19B99B-46AC-4D14-9E7D-4551459B5DE8}</Project>
+      <Name>DataEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{7847db7a-b833-4622-b253-069110b601cd}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
