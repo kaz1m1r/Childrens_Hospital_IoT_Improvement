@@ -75,6 +75,7 @@ namespace BabyphoneIoT.Interface.Nursing
         }
         #endregion
 
+        #region Buttons
         private void ButtonAttachCaretakerClicked(object sender, RoutedEventArgs e)
         {
             // Check if values exist for the baby and caretaker
@@ -112,6 +113,7 @@ namespace BabyphoneIoT.Interface.Nursing
 
         }
         #endregion
+        #endregion
 
         #region Methods
         #region Caretaker Combobox
@@ -124,7 +126,6 @@ namespace BabyphoneIoT.Interface.Nursing
                 // Get selected value and get new baby list
                 List<Caretaker> caretakers = _nurse.GetCaretakers();
                 Caretaker selectedCaretaker = null;
-
 
                 Dispatcher.Invoke(() =>
                 {
@@ -155,8 +156,8 @@ namespace BabyphoneIoT.Interface.Nursing
                     Dispatcher.Invoke(() =>
                     {
                         ComboboxItem<Caretaker> ctItem = cbCaretakers.Items.OfType<ComboboxItem<Caretaker>>()
-                                                                       .Where(ct => ct.Value.Name == selectedCaretaker.Name)
-                                                                       .FirstOrDefault();
+                                                                     .Where(ct => ct.Value.Name == selectedCaretaker.Name)
+                                                                     .FirstOrDefault();
                         int index = cbCaretakers.Items.IndexOf(ctItem);
                         index = index != -1 ? index : 0;
                         cbBabies.SelectedIndex = index;
@@ -217,7 +218,7 @@ namespace BabyphoneIoT.Interface.Nursing
             public ComboboxItem(T item, Func<T, string> toStringFunction)
             {
                 this.Value = item;
-                _toStringFunc = toStringFunction;
+                this._toStringFunc = toStringFunction;
             }
 
             public override string ToString()
