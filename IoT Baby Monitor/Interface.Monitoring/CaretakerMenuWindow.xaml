@@ -1,0 +1,30 @@
+﻿<Window x:Class="BabyphoneIoT.Interface.Monitoring.CaretakerMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BabyphoneIoT.Interface.Monitoring"
+        mc:Ignorable="d"
+        Title="Caretaker Monitoring - Caretaker Menu" Height="350" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Caretaker Menu" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Height="30" Width="auto" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <StackPanel Margin="10,5,10,5" Grid.Row="1" Grid.Column="1">
+            <Label Name="lblWaiting"  Content="Waiting for attachment..." Width="auto" Height="auto" Grid.Column="1" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Name="panelConnectedButtons" Grid.Row="2" Grid.Column="1" Margin="10,20,10,10" Visibility="Collapsed">
+            <Button Content="Vraag Hulp voor Baby" Width="150" Margin="10,2.5" Click="BtnRequestBabyHelp" />
+            <Button Content="Stop monitoren" Width="150" Margin="10,2.5" Click="BtnStopMonitoring" />
+        </StackPanel>
+    </Grid>
+</Window>

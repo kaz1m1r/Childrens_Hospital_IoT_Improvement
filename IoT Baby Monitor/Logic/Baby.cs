@@ -108,6 +108,22 @@ namespace BabyphoneIoT.Logic
             // Handle communication
             _caretakerCommunicator.SendUnsubscribe();
         }
+        /// <summary>
+        /// Gets the baby monitor name.
+        /// </summary>
+        /// <returns>Returns the name of the baby monitor.</returns>
+        public string GetBabyName()
+        {
+            return _iotDal.GetBabyName();
+        }
+        /// <summary>
+        /// Gets the monitor id.
+        /// </summary>
+        /// <returns>Returns the baby monitor id.</returns>
+        public string GetMonitorId()
+        {
+            return BabyId;
+        }
         #endregion
 
         #region Explicit Functions

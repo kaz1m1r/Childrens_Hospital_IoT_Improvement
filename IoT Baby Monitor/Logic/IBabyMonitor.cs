@@ -20,5 +20,15 @@ namespace BabyphoneIoT.Logic
         /// Notifies the nurse that the caretaker unsubscribed.
         /// </summary>
         void Unsubscribe();
+        /// <summary>
+        /// Gets the baby monitor name.
+        /// </summary>
+        /// <returns>Returns the name of the baby monitor.</returns>
+        string GetBabyName();
+        /// <summary>
+        /// Gets the monitor id.
+        /// </summary>
+        /// <returns>Returns the baby monitor id.</returns>
+        string GetMonitorId();
     }
 }

@@ -66,6 +66,20 @@ namespace BabyphoneIoT.Logic
             return LastBabyStatus;
         }
         /// <summary>
+        /// Gets the baby monitor name of the monitor of the baby on the given index.
+        /// </summary>
+        /// <param name="index">The index in the baby monitoring list.</param>
+        /// <returns>The monitor name of the monitor.</returns>
+        public string GetBabyName(int index)
+        {
+            // Check if baby monitor is in range, return BabyStatus.None if not.
+            if (index >= BabyMonitors.Count || index < 0)
+                return string.Empty;
+
+            // Get and return the baby's status
+            return BabyMonitors[index].GetBabyName();
+        }
+        /// <summary>
         /// Adds a baby monitor to the user.
         /// </summary>
         /// <param name="babyMonitor">The baby monitoring interface.</param>

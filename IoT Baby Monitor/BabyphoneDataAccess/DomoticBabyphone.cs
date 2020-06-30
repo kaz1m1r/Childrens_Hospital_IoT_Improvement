@@ -62,6 +62,20 @@ namespace BabyphoneIoT.BabyphoneDataAccess
                     return BabyStatus.None;
             }
         }
+
+        /// <summary>
+        /// Gets the baby monitor name.
+        /// </summary>
+        /// <returns>Returns the baby monitor name.</returns>
+        public string GetBabyName()
+        {
+            string apiPath = "type=devices&" +
+                             $"rid={babyId}";
+
+            dynamic results = CallApi(apiPath);
+
+            return Convert.ToString(results[0].Name);
+        }
         #endregion
         #endregion
     }

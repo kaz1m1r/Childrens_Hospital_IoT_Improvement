@@ -29,6 +29,7 @@ namespace BabyphoneIoT.Interface.Nursing
         private List<Baby> _babies;
 
         private CancellationTokenSource _ctsCaretakerListUpdate;
+        private CancellationTokenSource _ctsListenForHelp;
         #endregion
 
         #region Constructors
@@ -89,7 +90,7 @@ namespace BabyphoneIoT.Interface.Nursing
             Baby baby = ((cbBabies.SelectedItem as ComboboxItem<Baby>)?.Value);
 
             // Get selected caretaker
-            Caretaker caretaker = ((cbBabies.SelectedItem as ComboboxItem<Caretaker>)?.Value);
+            Caretaker caretaker = ((cbCaretakers.SelectedItem as ComboboxItem<Caretaker>)?.Value);
 
             // Trigger error if an unknown value was found
             if (baby == null || caretaker == null)
@@ -183,13 +184,21 @@ namespace BabyphoneIoT.Interface.Nursing
         #region Listening Handlers
         private void ListenForHelpRequest(Baby baby)
         {
-            Dispatcher.Invoke(() =>
+            _ctsListenForHelp = new CancellationTokenSource();
+
+            while (!_ctsListenForHelp.IsCancellationRequested)
             {
-                MessageBox.Show($"Hulp gevraagd voor baby ‘{baby.MonitorName.Split(new string[] { "-babyphone" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()}’",
-                                "Nurse Monitoring - Hulpvraag",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information);
-            });
+                string babyId = _nurse.AwaitNotification();
+
+                if (baby.BabyId == babyId)
+                    Dispatcher.Invoke(() =>
+                    {
+                        MessageBox.Show($"Hulp gevraagd voor baby ‘{baby.MonitorName.Split(new string[] { "-babyphone" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()}’",
+                                        "Nurse Monitoring - Hulpvraag",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Information);
+                    });
+            }
         }
 
         private void ListenForUnsubscribe(string caretaker)
