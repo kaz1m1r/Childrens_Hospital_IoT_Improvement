@@ -115,7 +115,7 @@ namespace BabyphoneIoT.Interface.Monitoring
         private void SetUserInterfaceConnected()
         {
             // Get baby name
-            string baby = _caretaker.GetBabyName(0);
+            string baby = _caretaker.GetBabyName(0).Split(new string[] { "-babyphone" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
 
             // Notify caretaker
             MessageBox.Show($"Gekoppeld aan baby ‘{baby}’.",
